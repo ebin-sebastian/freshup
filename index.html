@@ -23,6 +23,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         .glass:hover {
@@ -41,6 +42,7 @@
             animation: wave1 15s infinite ease-in-out;
             pointer-events: none;
             filter: blur(60px);
+            will-change: transform, top, left;
         }
         
         .ambient-glow-2 {
@@ -52,33 +54,41 @@
             animation: wave2 18s infinite ease-in-out;
             pointer-events: none;
             filter: blur(60px);
+            will-change: transform, bottom, right;
+        }
+
+        @media (max-width: 768px) {
+            .ambient-glow, .ambient-glow-2 {
+                filter: blur(40px);
+                animation-duration: 20s;
+            }
         }
 
         @keyframes wave1 {
             0% { 
                 top: -200px;
                 left: -200px;
-                transform: scale(1) rotate(0deg);
+                transform: scale(1) rotate(0deg) translateZ(0);
             }
             25% {
                 top: 10%;
                 left: 60%;
-                transform: scale(1.2) rotate(90deg);
+                transform: scale(1.2) rotate(90deg) translateZ(0);
             }
             50% {
                 top: 50%;
                 left: 80%;
-                transform: scale(0.9) rotate(180deg);
+                transform: scale(0.9) rotate(180deg) translateZ(0);
             }
             75% {
                 top: 70%;
                 left: 20%;
-                transform: scale(1.1) rotate(270deg);
+                transform: scale(1.1) rotate(270deg) translateZ(0);
             }
             100% { 
                 top: -200px;
                 left: -200px;
-                transform: scale(1) rotate(360deg);
+                transform: scale(1) rotate(360deg) translateZ(0);
             }
         }
 
@@ -86,27 +96,27 @@
             0% { 
                 bottom: -200px;
                 right: -200px;
-                transform: scale(1) rotate(0deg);
+                transform: scale(1) rotate(0deg) translateZ(0);
             }
             25% {
                 bottom: 60%;
                 right: 10%;
-                transform: scale(1.3) rotate(-90deg);
+                transform: scale(1.3) rotate(-90deg) translateZ(0);
             }
             50% {
                 bottom: 80%;
                 right: 70%;
-                transform: scale(0.8) rotate(-180deg);
+                transform: scale(0.8) rotate(-180deg) translateZ(0);
             }
             75% {
                 bottom: 20%;
                 right: 80%;
-                transform: scale(1.2) rotate(-270deg);
+                transform: scale(1.2) rotate(-270deg) translateZ(0);
             }
             100% { 
                 bottom: -200px;
                 right: -200px;
-                transform: scale(1) rotate(-360deg);
+                transform: scale(1) rotate(-360deg) translateZ(0);
             }
         }
 
@@ -254,7 +264,7 @@
             <div class="w-full md:w-1/2">
                 <div class="transition-transform duration-700 ease-out hover:scale-105">
                     <div class="glass aspect-square rounded-3xl md:rounded-full flex items-center justify-center border border-green-500/20 shadow-[0_0_100px_rgba(74,222,128,0.1)] relative overflow-hidden group transition-all duration-700 ease-out hover:border-green-500/60 hover:shadow-[0_0_200px_rgba(74,222,128,0.5)]">
-                        <img src="assets/trolly.webp" alt="The Freshup Unit" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity duration-700 rounded-3xl md:rounded-full">
+                        <img src="assets/trolly.webp" alt="The Freshup Unit" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity duration-700 rounded-3xl md:rounded-full" loading="lazy">
                         <div class="relative z-10 text-center pointer-events-none">
                             <p class="text-xs uppercase tracking-widest mb-2 text-green-400 font-bold drop-shadow-md">German Engineering</p>
                             <h3 class="text-2xl md:text-3xl text-white font-bold drop-shadow-lg">The Freshup Unit</h3>
@@ -339,7 +349,7 @@
             </div>
             <div class="w-full md:w-1/2">
                 <div class="relative rounded-3xl overflow-hidden glass h-64 md:h-80 group bg-gray-900 hover:border-green-500 transition-all duration-500">
-                    <img src="assets/porshe.webp" alt="Luxury Car Wash" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <img src="assets/porshe.webp" alt="Luxury Car Wash" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy">
                 </div>
             </div>
         </div>
@@ -369,7 +379,7 @@
             </div>
             <div class="w-full md:w-1/2">
                 <div class="relative rounded-3xl overflow-hidden glass h-64 md:h-80 group bg-gray-900 hover:border-green-500 transition-all duration-500">
-                    <img src="assets/interior.webp" alt="Interior Detail" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <img src="assets/interior.webp" alt="Interior Detail" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy">
                 </div>
             </div>
         </div>
@@ -388,7 +398,7 @@
             </div>
             <div class="w-full md:w-1/2">
                 <div class="relative rounded-3xl overflow-hidden glass h-64 md:h-80 group bg-gray-900 hover:border-green-500 transition-all duration-500">
-                    <img src="assets/mustang.webp" alt="Mustang Shine" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <img src="assets/mustang.webp" alt="Mustang Shine" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy">
                 </div>
             </div>
         </div>
@@ -573,9 +583,18 @@
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(30px)';
                 element.style.transition = 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                element.style.willChange = 'opacity, transform';
             });
             
             observer.observe(section);
+        });
+
+        window.addEventListener('load', () => {
+            document.querySelectorAll('[style*="will-change"]').forEach(el => {
+                setTimeout(() => {
+                    el.style.willChange = 'auto';
+                }, 1000);
+            });
         });
     </script>
 
